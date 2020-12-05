@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.quewea.booknetwork.aplication_menu_ui.home.HomeFragment"
+        android:label="@string/none"
+        tools:layout="@layout/fragment_home"/>
+
+    <fragment
+        android:id="@+id/nav_my_publications"
+        android:name="com.quewea.booknetwork.aplication_menu_ui.myPublications.MyPublicationsFragment"
+        tools:layout="@layout/fragment_my_publications" />
+
+    <fragment
+        android:id="@+id/nav_new_publication"
+        android:name="com.quewea.booknetwork.aplication_menu_ui.newPublication.NewPublicationFragment"
+        tools:layout="@layout/fragment_new_publication" />
+
+    <fragment
+        android:id="@+id/nav_update_user"
+        android:name="com.quewea.booknetwork.aplication_menu_ui.updateUser.UpdateUserFragment"
+        tools:layout="@layout/fragment_update_user" />
+
+    <fragment
+        android:id="@+id/nav_log_out"
+        android:name="com.quewea.booknetwork.aplication_menu_ui.logout.LogoutFragment"
+        tools:layout="@layout/fragment_log_out" />
+</navigation>

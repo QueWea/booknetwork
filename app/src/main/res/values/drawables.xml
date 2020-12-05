@@ -1,0 +1,13 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+    <item name="dw_menu_home" type="drawable">@drawable/ic_home</item>
+    <item name="dw_menu_my_publications" type="drawable">@drawable/ic_my_publications</item>
+    <item name="dw_menu_new_publication" type="drawable">@drawable/ic_new_publication</item>
+    <item name="dw_book_details_year" type="drawable">@drawable/ic_date</item>
+    <item name="dw_book_details_pages_and_deal" type="drawable">@drawable/ic_type_deal</item>
+    <item name="dw_book_details_isbn" type="drawable">@drawable/ic_isbn</item>
+    <item name="dw_book_details_languaje" type="drawable">@drawable/ic_language</item>
+    <item name="dw_user" type="drawable">@drawable/ic_user</item>
+    <item name="dw_visibility" type="drawable">@drawable/ic_visibility</item>
+    <item name="dw_login" type="drawable">@drawable/ic_login</item>
+    <item name="dw_logout" type="drawable">@drawable/ic_logout</item>
+</resources>
