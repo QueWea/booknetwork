@@ -10,4 +10,5 @@
     <item name="dw_visibility" type="drawable">@drawable/ic_visibility</item>
     <item name="dw_login" type="drawable">@drawable/ic_login</item>
     <item name="dw_logout" type="drawable">@drawable/ic_logout</item>
+    <item name="dw_fondo" type="drawable">@drawable/fondo</item>
 </resources>
