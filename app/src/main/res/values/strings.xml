@@ -24,4 +24,20 @@
     <string name="book_management_book_details">Book Details</string>
     <string name="book_management_book_manage">book Manage</string>
     <string name="book_management_update_publication">Update Publication</string>
+
+    //New Publication
+    <string name="new_publication_title">Title</string>
+    <string name="new_publication_autor">Autor</string>
+    <string name="new_publication_editorial">Editorial</string>
+    <string name="new_publication_year_edition">Year of edition</string>
+    <string name="new_publication_isbn">ISBN</string>
+    <string name="new_publication_pages">Pages</string>
+    <string name="new_publication_languaje">Languaje</string>
+    <string name="new_publication_type_deal">Type of deal</string>
+    <string name="new_publication_synopsis">Synopsis</string>
+    <string name="new_publication_book_condition">Book Condition</string>
+    <string name="new_publication_book_Image">Book Image</string>
+
+    <string name="new_publication_btn_select_image">Select image</string>
+    <string name="new_publication_btn_publish">Publish</string>
 </resources>
