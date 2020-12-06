@@ -37,9 +37,8 @@ public class book_management extends AppCompatActivity {
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_book_management);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
-        NavigationUI.setupWithNavController(navigationView, navController);
 
-        /*navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch(item.getItemId()) {
@@ -47,9 +46,11 @@ public class book_management extends AppCompatActivity {
                         logout(navigationView);
                         return true;
                 }
-                return onOptionsItemSelected(item);
+                return true;
             }
-        });*/
+        });
+
+        NavigationUI.setupWithNavController(navigationView, navController);
     }
 
     public void logout(View view) {
