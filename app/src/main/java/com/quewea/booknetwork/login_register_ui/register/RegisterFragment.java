@@ -23,7 +23,7 @@ public class RegisterFragment extends Fragment {
         registerViewModel =
                 new ViewModelProvider(this).get(RegisterViewModel.class);
         View root = inflater.inflate(R.layout.fragment_register, container, false);
-        final TextView textView = root.findViewById(R.id.text_home);
+        final TextView textView = root.findViewById(R.id.text_title_register);
         registerViewModel.resourceTexts(getContext());
         registerViewModel.getTitle().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
