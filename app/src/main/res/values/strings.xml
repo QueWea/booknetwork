@@ -40,4 +40,26 @@
 
     <string name="new_publication_btn_select_image">Select image</string>
     <string name="new_publication_btn_publish">Publish</string>
+
+    //User Update
+    <string name="update_user_username">Username</string>         //and Register, Login
+    <string name="update_user_first_name">first name</string>     //and Register
+    <string name="update_user_last_name">Last name</string>       //and Register
+    <string name="update_user_old_pass">Old password</string>
+    <string name="update_user_new_pass">New password</string>
+
+    <string name="update_user_txt_terms_conditions">By clicking Register you are agreeing to the Terms and Conditions.</string> //and Register
+
+    <string name="update_user_btn_update">Update</string>
+
+    //Register
+    <string name="register_pass">Password</string>  //and Login
+
+    <string name="register_btn_Register">Register</string>
+
+    //login
+    <string name="register_btn_login">login</string>
+
+    <string name="update_user_txt_new_user_register_here">New user? Register here</string>
+
 </resources>

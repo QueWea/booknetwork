@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>
@@ -11,4 +11,9 @@
     <color name="primary_green">#01A299</color>
     <color name="primary_text_title_imput">#292929</color>
     <color name="text_view">#6200EE</color>
+    <color name="primary_menu_text">#650202</color>
+    <color name="box_troke_color">#fff</color>
+    <color name="text_title">#80FFFFFF</color>
+    <color name="icons">#70FFFFFF</color>
+    <color name="mtrl_textinput_default_box_stroke_color">@color/box_troke_color</color>
 </resources>
