@@ -23,7 +23,7 @@ public class LoginFragment extends Fragment {
         loginViewModel =
                 new ViewModelProvider(this).get(LoginViewModel.class);
         View root = inflater.inflate(R.layout.fragment_login, container, false);
-        final TextView textView = root.findViewById(R.id.text_home);
+        final TextView textView = root.findViewById(R.id.text_title_login);
         loginViewModel.resourceTexts(getContext());
         loginViewModel.getTitle().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
