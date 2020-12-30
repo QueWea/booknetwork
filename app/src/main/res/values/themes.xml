@@ -2,7 +2,7 @@
     <!-- Base application theme. -->
     <style name="Theme.Booknetwork" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorPrimary">@color/primary_red</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
@@ -17,6 +17,27 @@
     <style name="Theme.Booknetwork.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="input_layoud_text" parent="Base.Widget.MaterialComponents.TextInputLayout">
+        <item name="materialThemeOverlay">
+            @style/ThemeOverlay.MaterialComponents.TextInputEditText.OutlinedBox.Dense
+        </item>
+        <item name="android:textColorHint">@color/white</item>
+        <item name="boxStrokeColor" >@color/colors_inpu_text</item>
+    </style>
+
+    <style name="text_title" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">@dimen/text_title</item>
+        <item name="android:textColor">@color/text_title</item>
+    </style>
+
+    <style name="input_edit_text">
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="button_green">
+        <item name="android:background">@color/primary_green</item>
     </style>
 
     <style name="Theme.Booknetwork.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />

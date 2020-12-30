@@ -5,23 +5,25 @@
     android:id="@+id/linearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".aplication_menu_ui.newPublication.NewPublicationFragment">
+    tools:context=".aplication_menu_ui.newPublication.NewPublicationFragment"
+    android:background="@drawable/dw_fondo">
 
     <TextView
         android:id="@+id/text_new_publication"
+        style="@style/text_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8sp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8sp"
         android:gravity="center"
-        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ScrollView
+        android:id="@+id/scrollView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -40,15 +42,15 @@
 
             <ImageView
                 android:id="@+id/new_publication_img_view"
-                android:layout_width="138dp"
-                android:layout_height="167dp"
+                android:layout_width="140dp"
+                android:layout_height="219dp"
                 android:layout_marginTop="16dp"
-                android:layout_marginEnd="35dp"
-                android:layout_marginRight="35dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginRight="24dp"
+                android:contentDescription="@string/new_publication_book_Image"
                 android:src="@drawable/dw_book_sample"
-                app:layout_constraintEnd_toStartOf="@+id/guideline3"
-                app:layout_constraintTop_toTopOf="parent"
-                android:contentDescription="@string/new_publication_book_Image" />
+                app:layout_constraintEnd_toStartOf="@+id/txt_input_layout_title"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <Button
                 android:id="@+id/button3"
@@ -66,18 +68,19 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/txt_input_layout_title"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                style="@style/input_layoud_text"
+                app:boxStrokeColor="@color/colors_inpu_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginLeft="24dp"
                 android:layout_marginTop="16dp"
                 android:hint="@string/new_publication_title"
-                app:layout_constraintStart_toEndOf="@+id/new_publication_img_view"
+                app:layout_constraintEnd_toStartOf="@+id/guideline3"
+                app:layout_constraintStart_toStartOf="@+id/guideline3"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/new_publication_edit_text_title"
+                    style="@style/input_edit_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:ems="10"
@@ -86,7 +89,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/txt_input_layout_autor"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                style="@style/input_layoud_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -97,6 +100,7 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/new_publication_edit_text_autor"
+                    style="@style/input_edit_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
@@ -107,7 +111,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/txt_input_layout_editorial"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                style="@style/input_layoud_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -118,15 +122,16 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/new_publication_edit_text_editorial"
+                    style="@style/input_edit_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:ems="10"
-                    android:inputType="textPersonName"/>
+                    android:inputType="textPersonName" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/txt_input_layout_year_edition"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                style="@style/input_layoud_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -137,22 +142,27 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/new_publication_edit_text_num_year_edition"
+                    style="@style/input_edit_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:ems="10"/>
+                    android:ems="10" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/txt_input_layout_isbn"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                style="@style/input_layoud_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
                 android:hint="@string/new_publication_isbn"
+                app:layout_constraintEnd_toStartOf="@+id/txt_input_layout_pages"
                 app:layout_constraintStart_toStartOf="@+id/new_publication_img_view"
                 app:layout_constraintTop_toTopOf="@+id/txt_input_layout_pages">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/new_publication_edit_text_num_isbn"
+                    style="@style/input_edit_text"
                     android:layout_width="163dp"
                     android:layout_height="wrap_content"
                     android:ems="10"
@@ -161,19 +171,17 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/txt_input_layout_pages"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                style="@style/input_layoud_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginLeft="16dp"
                 android:layout_marginTop="24dp"
                 android:hint="@string/new_publication_pages"
                 app:layout_constraintEnd_toEndOf="@+id/txt_input_layout_year_edition"
-                app:layout_constraintStart_toEndOf="@+id/txt_input_layout_isbn"
                 app:layout_constraintTop_toBottomOf="@+id/txt_input_layout_year_edition">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/new_publication_edit_text_num_pages"
+                    style="@style/input_edit_text"
                     android:layout_width="163dp"
                     android:layout_height="wrap_content"
                     android:ems="10"
@@ -182,7 +190,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/txt_input_layout_languaje"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                style="@style/input_layoud_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:hint="@string/new_publication_languaje"
@@ -192,6 +200,7 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/new_publication_edit_text_languaje"
+                    style="@style/input_edit_text"
                     android:layout_width="163dp"
                     android:layout_height="wrap_content"
                     android:ems="10"
@@ -200,7 +209,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/txt_input_layout_type_deal"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                style="@style/input_layoud_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -211,16 +220,17 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/new_publication_edit_text_type_deal"
+                    style="@style/input_edit_text"
                     android:layout_width="163dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:ems="10"
-                    android:inputType="textPersonName"/>
+                    android:inputType="textPersonName" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/txt_input_layout_synopsis"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                style="@style/input_layoud_text"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -231,6 +241,7 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/new_publication_edit_text_synopsis"
+                    style="@style/input_edit_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
@@ -239,12 +250,12 @@
                     android:inputType="textMultiLine"
                     android:lines="7"
                     android:maxLines="15"
-                    android:padding="10dp"/>
+                    android:padding="10dp" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/txt_input_layout_book_condition"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                style="@style/input_layoud_text"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -255,6 +266,7 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/new_publication_edit_text_book_condition"
+                    style="@style/input_edit_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
@@ -263,14 +275,18 @@
                     android:inputType="textMultiLine"
                     android:lines="4"
                     android:maxLines="10"
-                    android:padding="10dp"/>
+                    android:padding="10dp" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
                 android:id="@+id/new_publication_btn_publish"
                 android:layout_width="0dp"
                 android:layout_height="45dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginLeft="32dp"
                 android:layout_marginTop="24dp"
+                android:layout_marginEnd="32dp"
+                android:layout_marginRight="32dp"
                 android:layout_marginBottom="70dp"
                 android:text="@string/new_publication_btn_publish"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -283,7 +299,7 @@
                 android:layout_width="1dp"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.5" />
+                app:layout_constraintGuide_percent="0.70" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
