@@ -18,11 +18,11 @@
     <string name="login">Login</string>
     <string name="login_register_here">New user? Register here</string>
 
-    <string name="register">register</string>
+    <string name="register">Register</string>
 
     <string name="book_management_contact">Contact</string>
     <string name="book_management_book_details">Book Details</string>
-    <string name="book_management_book_manage">book Manage</string>
+    <string name="book_management_book_manage">Book Manage</string>
     <string name="book_management_update_publication">Update Publication</string>
 
     //New Publication
@@ -43,7 +43,7 @@
 
     //User Update
     <string name="update_user_username">Username</string>         //and Register, Login
-    <string name="update_user_first_name">first name</string>     //and Register
+    <string name="update_user_first_name">First name</string>     //and Register
     <string name="update_user_last_name">Last name</string>       //and Register
     <string name="update_user_old_pass">Old password</string>
     <string name="update_user_new_pass">New password</string>
@@ -58,7 +58,7 @@
     <string name="register_btn_Register">Register</string>
 
     //login
-    <string name="register_btn_login">login</string>
+    <string name="login_btn_Login">Login</string>
 
     <string name="update_user_txt_new_user_register_here">New user? Register here</string>
 

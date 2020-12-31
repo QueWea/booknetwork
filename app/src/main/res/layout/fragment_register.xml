@@ -109,8 +109,8 @@
                 android:layout_marginTop="16dp"
                 android:hint="@string/update_user_last_name"
                 app:boxStrokeColor="@color/colors_inpu_text"
-                app:layout_constraintEnd_toEndOf="@+id/txt_input_layout_old_pass"
-                app:layout_constraintStart_toStartOf="@+id/txt_input_layout_old_pass"
+                app:layout_constraintEnd_toEndOf="@+id/txt_input_layout_pass"
+                app:layout_constraintStart_toStartOf="@+id/txt_input_layout_pass"
                 app:layout_constraintTop_toBottomOf="@+id/txt_input_layout_first_name">
 
                 <EditText
@@ -124,7 +124,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/txt_input_layout_old_pass"
+                android:id="@+id/txt_input_layout_pass"
                 style="@style/input_layoud_text"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -140,7 +140,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/txt_input_layout_last_name">
 
                 <EditText
-                    android:id="@+id/login_edit_text_old_pass"
+                    android:id="@+id/login_edit_text_pass"
                     style="@style/input_edit_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -161,10 +161,10 @@
                 android:textSize="@dimen/text_terms_conditions"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txt_input_layout_old_pass" />
+                app:layout_constraintTop_toBottomOf="@+id/txt_input_layout_pass" />
 
             <Button
-                android:id="@+id/btn_update"
+                android:id="@+id/btn_login"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
