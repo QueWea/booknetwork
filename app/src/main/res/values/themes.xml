@@ -25,15 +25,94 @@
         </item>
         <item name="android:textColorHint">@color/white</item>
         <item name="boxStrokeColor" >@color/colors_inpu_text</item>
+        <item name="android:linksClickable">false</item>
+    </style>
+
+    <style name="input_layoud_text_view">
+        <item name="android:textColorHint">@color/text_title</item>
+        <item name="boxStrokeColor" >@color/colors_inpu_text</item>
+        <item name="android:linksClickable">false</item>
     </style>
 
     <style name="text_title" parent="TextAppearance.AppCompat">
         <item name="android:textSize">@dimen/text_title</item>
         <item name="android:textColor">@color/text_title</item>
+        <item name="android:linksClickable">false</item>
+    </style>
+
+    <style name="view_text">
+        <item name="android:linksClickable">false</item>
+        <item name="android:clickable">false</item>
+        <item name="android:editable">false</item>
+        <item name="android:focusable">false</item>
+    </style>
+
+    <style name="input_view_text_attr">
+        <item name="android:linksClickable">false</item>
     </style>
 
     <style name="input_edit_text">
         <item name="android:textColor">@color/white</item>
+        <item name="android:linksClickable">false</item>
+    </style>
+
+    <style name="input_view_text" parent="input_view_text_attr">
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="multi_view_text" parent="view_text">
+        <item name="android:textColor">@color/white</item>
+    </style>>
+
+    <style name="input_edit_text_view" parent="input_view_text_attr">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:textColorHint">@color/white</item>
+    </style>
+
+    <style name="edit_text_view" parent="view_text">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:textColorHint">@color/white</item>
+    </style>
+
+    <style name="book_manage_image_from_input_text">
+        <item name="android:layout_marginEnd">-4dp</item>
+        <item name="android:layout_marginRight">-4dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:paddingTop">5dp</item>
+        <item name="android:scaleX">1.5</item>
+        <item name="android:scaleY">1.5</item>
+    </style>
+
+    <style name="input_edit_text_view_image" parent="@style/input_edit_text_view">
+        <item name="android:layout_marginStart">7dp</item>
+        <item name="android:layout_marginLeft">0dp</item>
+        <item name="android:layout_marginTop">-7dp</item>
+        <item name="android:layout_marginEnd">0dp</item>
+        <item name="android:layout_marginRight">0dp</item>
+        <item name="android:paddingStart">0dp</item>
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:paddingTop">23dp</item>
+        <item name="android:paddingEnd">5dp</item>
+        <item name="android:paddingRight">10dp</item>
+        <item name="android:paddingBottom">0dp</item>
+        <item name="android:singleLine">true</item>
+    </style>
+
+    <style name="edit_text_view_image" parent="@style/edit_text_view">
+        <item name="android:layout_marginStart">7dp</item>
+        <item name="android:layout_marginLeft">0dp</item>
+        <item name="android:layout_marginTop">-7dp</item>
+        <item name="android:layout_marginEnd">0dp</item>
+        <item name="android:layout_marginRight">0dp</item>
+        <item name="android:paddingStart">0dp</item>
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:paddingTop">23dp</item>
+        <item name="android:paddingEnd">5dp</item>
+        <item name="android:paddingRight">10dp</item>
+        <item name="android:paddingBottom">0dp</item>
+        <item name="android:singleLine">true</item>
     </style>
 
     <style name="button_green">
