@@ -10,6 +10,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -17,6 +19,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.quewea.booknetwork.Adapter;
 import com.quewea.booknetwork.R;
+import com.quewea.booknetwork.book_management_ui.bookManage.BookManageFragment;
+import com.quewea.booknetwork.login_register_ui.register.RegisterFragment;
 
 import java.util.ArrayList;
 
@@ -56,11 +60,19 @@ public class MyPublicationsFragment extends Fragment {
             public void onClick(View v) {
                 Toast.makeText(getContext(), "TITULO: "
                         +books.get(recyclerView.getChildAdapterPosition(v)),Toast.LENGTH_SHORT).show();
+                bookManage();
             }
         });
 
         recyclerView.setAdapter(adapter);
 
         return root;
+    }
+
+    private void bookManage(){
+        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        Fragment bookManage = new BookManageFragment();
+        fragmentTransaction.add(R.id.drawer_layout, bookManage).commit();
     }
 }
