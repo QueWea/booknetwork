@@ -64,4 +64,16 @@
 
     <string name="update_user_txt_new_user_register_here">New user? Register here</string>
 
+
+    // book management
+    <string name="book_management_year_edition_book_management">Year</string>
+    <string name="book_management_btn_update">Update</string>
+
+    // book details
+    <string name="book_details_owner">Owner</string>
+    <string name="book_details_contact_owner">Contact Owner</string>
+
+    // update publication
+    <string name="update_publication_btn_update">Update</string>
+
 </resources>
