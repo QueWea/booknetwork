@@ -1,23 +1,306 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout5"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".book_management_ui.updatePublication.UpdatePublicationFragment"
-    android:background="@drawable/dw_fondo">
+    android:background="@drawable/dw_fondo"
+    tools:context=".book_management_ui.updatePublication.UpdatePublicationFragment">
 
     <TextView
-        android:id="@+id/text_home"
-        android:layout_width="match_parent"
+        android:id="@+id/txt_update_publication"
+        style="@style/text_title"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginLeft="8dp"
         android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginRight="8dp"
+        android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-</LinearLayout>
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="70dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.757"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_update_publication"
+        app:layout_constraintVertical_bias="0.066"
+        tools:ignore="MissingConstraints">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/new_publication_img_view"
+                android:layout_width="140dp"
+                android:layout_height="219dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginRight="24dp"
+                android:contentDescription="@string/new_publication_book_Image"
+                android:src="@drawable/dw_book_sample"
+                app:layout_constraintEnd_toStartOf="@+id/txt_input_layout_title"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/button3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                android:text="@string/new_publication_btn_select_image"
+                app:layout_constraintEnd_toEndOf="@+id/new_publication_img_view"
+                app:layout_constraintStart_toStartOf="@+id/new_publication_img_view"
+                app:layout_constraintTop_toBottomOf="@+id/new_publication_img_view" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/txt_input_layout_title"
+                style="@style/input_layoud_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:hint="@string/new_publication_title"
+                app:boxStrokeColor="@color/colors_inpu_text"
+                app:layout_constraintEnd_toStartOf="@+id/guideline3"
+                app:layout_constraintStart_toStartOf="@+id/guideline3"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/book_details_view_text_title"
+                    style="@style/input_edit_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="textPersonName" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/txt_input_layout_autor"
+                style="@style/input_layoud_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:hint="@string/new_publication_autor"
+                app:layout_constraintEnd_toEndOf="@+id/txt_input_layout_title"
+                app:layout_constraintStart_toStartOf="@+id/txt_input_layout_title"
+                app:layout_constraintTop_toBottomOf="@+id/txt_input_layout_title">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/update_publication_view_text_autor"
+                    style="@style/input_edit_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_input_layout_title" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/txt_input_layout_editorial"
+                style="@style/input_layoud_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:hint="@string/new_publication_editorial"
+                app:layout_constraintEnd_toEndOf="@+id/txt_input_layout_autor"
+                app:layout_constraintStart_toStartOf="@+id/txt_input_layout_autor"
+                app:layout_constraintTop_toBottomOf="@+id/txt_input_layout_autor">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/update_publication_view_text_owner"
+                    style="@style/input_edit_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="textPersonName" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/txt_input_layout_year_edition"
+                style="@style/input_layoud_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:hint="@string/new_publication_year_edition"
+                app:layout_constraintEnd_toEndOf="@+id/txt_input_layout_editorial"
+                app:layout_constraintStart_toStartOf="@+id/txt_input_layout_editorial"
+                app:layout_constraintTop_toBottomOf="@+id/txt_input_layout_editorial">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/update_publication_view_text_num_year_edition"
+                    style="@style/input_edit_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/txt_input_layout_isbn"
+                style="@style/input_layoud_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                android:hint="@string/new_publication_isbn"
+                app:layout_constraintEnd_toStartOf="@+id/txt_input_layout_pages"
+                app:layout_constraintStart_toStartOf="@+id/new_publication_img_view"
+                app:layout_constraintTop_toTopOf="@+id/txt_input_layout_pages">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/update_publication_view_text_num_isbn"
+                    style="@style/input_edit_text"
+                    android:layout_width="163dp"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="number" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/txt_input_layout_pages"
+                style="@style/input_layoud_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:hint="@string/new_publication_pages"
+                app:layout_constraintEnd_toEndOf="@+id/txt_input_layout_year_edition"
+                app:layout_constraintTop_toBottomOf="@+id/txt_input_layout_year_edition">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/update_publication_view_text_num_pages"
+                    style="@style/input_edit_text"
+                    android:layout_width="163dp"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="number" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/txt_input_layout_languaje"
+                style="@style/input_layoud_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="@string/new_publication_languaje"
+                app:layout_constraintEnd_toEndOf="@+id/txt_input_layout_isbn"
+                app:layout_constraintStart_toStartOf="@+id/txt_input_layout_isbn"
+                app:layout_constraintTop_toTopOf="@+id/txt_input_layout_type_deal">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/update_publication_view_text_languaje"
+                    style="@style/input_edit_text"
+                    android:layout_width="163dp"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="textPersonName" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/txt_input_layout_type_deal"
+                style="@style/input_layoud_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:hint="@string/new_publication_type_deal"
+                app:layout_constraintEnd_toEndOf="@+id/txt_input_layout_pages"
+                app:layout_constraintStart_toStartOf="@+id/txt_input_layout_pages"
+                app:layout_constraintTop_toBottomOf="@+id/txt_input_layout_pages">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/update_publication_view_text_type_deal"
+                    style="@style/input_edit_text"
+                    android:layout_width="163dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:ems="10"
+                    android:inputType="textPersonName" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/txt_input_layout_synopsis"
+                style="@style/input_layoud_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:hint="@string/new_publication_synopsis"
+                app:layout_constraintEnd_toEndOf="@+id/txt_input_layout_type_deal"
+                app:layout_constraintStart_toStartOf="@+id/txt_input_layout_languaje"
+                app:layout_constraintTop_toBottomOf="@+id/txt_input_layout_type_deal">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/update_publication_view_text_synopsis"
+                    style="@style/input_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:ems="10"
+                    android:gravity="start|top"
+                    android:inputType="textMultiLine"
+                    android:lines="7"
+                    android:maxLines="15"
+                    android:padding="10dp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/txt_input_layout_book_condition"
+                style="@style/input_layoud_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:hint="@string/new_publication_book_condition"
+                app:layout_constraintEnd_toEndOf="@+id/txt_input_layout_synopsis"
+                app:layout_constraintStart_toStartOf="@+id/txt_input_layout_synopsis"
+                app:layout_constraintTop_toBottomOf="@+id/txt_input_layout_synopsis">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/update_publication_view_text_book_condition"
+                    style="@style/input_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:ems="10"
+                    android:gravity="start|top"
+                    android:inputType="textMultiLine"
+                    android:lines="4"
+                    android:maxLines="10"
+                    android:padding="10dp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/update_publication_btn_update"
+                android:layout_width="0dp"
+                android:layout_height="45dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginBottom="70dp"
+                android:backgroundTint="@color/primary_green"
+                android:text="@string/update_publication_btn_update"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/txt_input_layout_book_condition"
+                app:layout_constraintStart_toStartOf="@+id/txt_input_layout_book_condition"
+                app:layout_constraintTop_toBottomOf="@+id/txt_input_layout_book_condition" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline3"
+                android:layout_width="1dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.70" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
