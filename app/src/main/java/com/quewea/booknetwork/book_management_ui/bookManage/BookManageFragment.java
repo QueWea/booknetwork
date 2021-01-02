@@ -23,7 +23,7 @@ public class BookManageFragment extends Fragment {
         bookManageViewModel =
                 new ViewModelProvider(this).get(BookManageViewModel.class);
         View root = inflater.inflate(R.layout.fragment_book_manage, container, false);
-        final TextView textView = root.findViewById(R.id.text_home);
+        final TextView textView = root.findViewById(R.id.txt_book_manage);
         bookManageViewModel.resourceTexts(getContext());
         bookManageViewModel.getTitle().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
