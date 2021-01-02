@@ -57,6 +57,8 @@
 
     <string name="register_btn_Register">Register</string>
 
+    <string name="register_log_in">Do you have an account? Log in here</string>
+
     //login
     <string name="login_btn_Login">Login</string>
 

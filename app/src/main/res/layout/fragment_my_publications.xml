@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".aplication_menu_ui.myPublications.MyPublicationsFragment"
-    android:background="@drawable/dw_fondo">
+    android:background="@drawable/dw_fondo"
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/text_my_publications"
@@ -20,4 +21,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvMyPublications"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 </LinearLayout>

@@ -11,7 +11,10 @@ import androidx.navigation.ui.NavigationUI;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.quewea.booknetwork.aplication_menu_ui.home.HomeFragment;
 import com.quewea.booknetwork.login_register_ui.login.LoginFragment;
@@ -26,13 +29,7 @@ public class login_register extends AppCompatActivity{
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout_login);
         showLogin();
-        //findViewById(R.id.btn_login).setOnClickListener(this);
-        //findViewById(R.id.txt_register_here).setOnClickListener(this);
-    }
 
-    private void login() {
-        Intent login = new Intent(this, book_management.class);
-        startActivity(login);
     }
 
     private void showLogin(){
@@ -42,19 +39,4 @@ public class login_register extends AppCompatActivity{
         fragmentTransaction.add(R.id.drawer_layout_login, login).commit();
     }
 
-    private void register(){
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        Fragment register = new RegisterFragment();
-        fragmentTransaction.add(R.id.drawer_layout_login, register).commit();
-    }
-
-    public void onClickListener(View v) {
-        switch(v.getId()) {
-            case R.id.btn_login:
-                login();
-            case R.id.txt_view_new_user_register_here:
-                register();
-        }
-    }
 }

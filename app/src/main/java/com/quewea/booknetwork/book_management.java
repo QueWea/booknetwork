@@ -57,20 +57,20 @@ public class book_management extends AppCompatActivity {
                 switch(item.getItemId()) {
                     case R.id.nav_home:
                         Fragment home = new HomeFragment();
-                        fragmentTransaction.add(R.id.nav_host_fragment_book_management, home).commit();
+                        fragmentTransaction.replace(R.id.nav_host_fragment_book_management, home).commit();
                         break;
                     case R.id.nav_my_publications:
                         Fragment myP = new MyPublicationsFragment();
-                        fragmentTransaction.add(R.id.nav_host_fragment_book_management, myP).commit();
+                        fragmentTransaction.replace(R.id.nav_host_fragment_book_management, myP).commit();
                         //Navigation.findNavController(navigationView).navigate(R.id.nav_my_publications);
                         break;
                     case R.id.nav_new_publication:
                         Fragment newP = new NewPublicationFragment();
-                        fragmentTransaction.add(R.id.nav_host_fragment_book_management, newP).commit();
+                        fragmentTransaction.replace(R.id.nav_host_fragment_book_management, newP).commit();
                         break;
                     case R.id.nav_update_user:
                         Fragment updateUser = new UpdateUserFragment();
-                        fragmentTransaction.add(R.id.nav_host_fragment_book_management, updateUser).commit();
+                        fragmentTransaction.replace(R.id.nav_host_fragment_book_management, updateUser).commit();
                         break;
                     case R.id.nav_log_out:
                         //Toast.makeText(getApplicationContext(),"Cerrar sesion",Toast.LENGTH_SHORT).show();
