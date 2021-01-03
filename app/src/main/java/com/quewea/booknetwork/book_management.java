@@ -10,6 +10,8 @@ import android.widget.Toast;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.quewea.booknetwork.aplication_menu_ui.home.HomeFragment;
 import com.quewea.booknetwork.aplication_menu_ui.myPublications.MyPublicationsFragment;
 import com.quewea.booknetwork.aplication_menu_ui.newPublication.NewPublicationFragment;
@@ -37,6 +39,11 @@ public class book_management extends AppCompatActivity {
         setContentView(R.layout.activity_book_management);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        // Write a message to the database
+        //FirebaseDatabase database = FirebaseDatabase.getInstance();
+        //DatabaseReference myRef = database.getReference("message");
+        //myRef.setValue("Hello, World!");
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.menu_nav);

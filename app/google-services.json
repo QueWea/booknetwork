@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1093263243092",
+    "firebase_url": "https://booknetwork-3796a-default-rtdb.firebaseio.com",
+    "project_id": "booknetwork-3796a",
+    "storage_bucket": "booknetwork-3796a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1093263243092:android:836dd10fe5c6d110bbfac1",
+        "android_client_info": {
+          "package_name": "com.quewea.booknetwork"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1093263243092-nciq035g33229jiuui1pcaccppsjp8ri.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.quewea.booknetwork",
+            "certificate_hash": "420eaad7aed8457870bf9a44235b812af82b2324"
+          }
+        },
+        {
+          "client_id": "1093263243092-qgmmops4lfm6flac093cp8296da9bvur.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBmSztLwloqvhupNbmaG5Ojd1NUP5iqJas"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1093263243092-qgmmops4lfm6flac093cp8296da9bvur.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
