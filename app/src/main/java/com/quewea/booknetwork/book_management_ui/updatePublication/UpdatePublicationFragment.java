@@ -23,7 +23,7 @@ public class UpdatePublicationFragment extends Fragment {
         updatePublicationViewModel =
                 new ViewModelProvider(this).get(UpdatePublicationViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home, container, false);
-        final TextView textView = root.findViewById(R.id.text_home);
+        final TextView textView = root.findViewById(R.id.txt_update_publication);
         updatePublicationViewModel.resourceTexts(getContext());
         updatePublicationViewModel.getTitle().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override

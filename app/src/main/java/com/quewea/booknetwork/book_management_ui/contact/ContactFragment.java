@@ -23,7 +23,7 @@ public class ContactFragment extends Fragment {
         contactViewModel =
                 new ViewModelProvider(this).get(ContactViewModel.class);
         View root = inflater.inflate(R.layout.fragment_contact, container, false);
-        final TextView textView = root.findViewById(R.id.text_home);
+        final TextView textView = root.findViewById(R.id.txt_contact_fragment);
         contactViewModel.resourceTexts(getContext());
         contactViewModel.getTitle().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
