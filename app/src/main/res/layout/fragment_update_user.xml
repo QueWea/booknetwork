@@ -69,7 +69,7 @@
                 app:layout_constraintStart_toStartOf="@+id/txt_input_layout_first_name"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <EditText
+                <TextView
                     android:id="@+id/login_edit_text_user"
                     style="@style/input_edit_text"
                     android:layout_width="match_parent"

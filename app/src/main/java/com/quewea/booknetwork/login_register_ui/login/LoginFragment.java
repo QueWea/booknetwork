@@ -94,7 +94,6 @@ public class LoginFragment extends Fragment {
             firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
-                    //checking if success
                     if (task.isSuccessful()) {
                         int pos = email.indexOf("@");
                         String user = email.substring(0, pos);

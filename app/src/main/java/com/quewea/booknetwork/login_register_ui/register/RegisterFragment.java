@@ -2,10 +2,8 @@ package com.quewea.booknetwork.login_register_ui.register;
 
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,34 +21,20 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseAuthEmailException;
-import com.google.firebase.auth.FirebaseAuthInvalidUserException;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.quewea.booknetwork.R;
-import com.quewea.booknetwork.User;
-import com.quewea.booknetwork.book_management;
 import com.quewea.booknetwork.login_register_ui.login.LoginFragment;
 
-import org.json.JSONObject;
-
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
-import java.util.concurrent.Executor;
-
-import static androidx.core.content.ContextCompat.getSystemService;
 
 public class RegisterFragment extends Fragment {
     private Button btnRegister;
@@ -58,8 +42,8 @@ public class RegisterFragment extends Fragment {
     private EditText username, firstName, lastName, pass;
     private ProgressDialog progressDialog;
     private FirebaseAuth firebaseAuth;  //Declaracion objeto firebaseAuth
-    private FirebaseDatabase firebaseDatabase;
-    private DatabaseReference databaseReference;
+    private FirebaseFirestore db;
+
 
     private RegisterViewModel registerViewModel;
 
@@ -107,8 +91,10 @@ public class RegisterFragment extends Fragment {
 
     private void inicializarFirebase() {
         FirebaseApp.initializeApp(getContext());
-        firebaseDatabase = FirebaseDatabase.getInstance();
-        databaseReference = firebaseDatabase.getReference();
+        //firebaseDatabase = FirebaseDatabase.getInstance();
+        //databaseReference = firebaseDatabase.getReference();
+        // Access a Cloud Firestore instance from your Activity
+        db = FirebaseFirestore.getInstance();
         firebaseAuth = FirebaseAuth.getInstance();
         progressDialog = new ProgressDialog(getContext());
     }
@@ -128,12 +114,6 @@ public class RegisterFragment extends Fragment {
         String fn = firstName.getText().toString();
         String ln = lastName.getText().toString();
 
-        User u = new User();
-        u.setId(UUID.randomUUID().toString());
-        u.setEmail(email);
-        u.setFisrtname(fn);
-        u.setLastname(ln);
-
         if (!validacionCampo(email, username) ||
                 !validacionCampo(fn, firstName) ||
                 !validacionCampo(ln, lastName) ||
@@ -149,14 +129,19 @@ public class RegisterFragment extends Fragment {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {
-                        databaseReference.child("User").child(u.getId()).setValue(u);
+                        //databaseReference.child("User").child(u.getId()).setValue(u);
+                        Map<String, Object> u = new HashMap<>();
+                        u.put("email", email);
+                        u.put("firstname", fn);
+                        u.put("lastname", ln);
+                        db.collection("Users").document(email).set(u);
                         Toast.makeText(getContext(), "Se ha registrado el usuario con el email: " + username.getText()+"\nYa puedes iniciar sesión", Toast.LENGTH_LONG).show();
                         showLogin();
                     } else {
                         if (task.getException() instanceof FirebaseAuthUserCollisionException) {
                             Toast.makeText(getContext(), "El usuario " + username.getText() + " ya existe", Toast.LENGTH_LONG).show();
                         }else if (task.getException() instanceof FirebaseAuthWeakPasswordException) {
-                            Toast.makeText(getContext(), "La contraseña debe tener al menos 6 caracteres", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getContext(), "La contraseña debe contener al menos 6 caracteres", Toast.LENGTH_LONG).show();
                         } else
                             Toast.makeText(getContext(), "Se ha producido un error\nVerifique los datos", Toast.LENGTH_LONG).show();
                     }
