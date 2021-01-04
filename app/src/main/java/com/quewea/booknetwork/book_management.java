@@ -1,6 +1,8 @@
 package com.quewea.booknetwork;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -45,55 +47,75 @@ public class book_management extends AppCompatActivity {
         //DatabaseReference myRef = database.getReference("message");
         //myRef.setValue("Hello, World!");
 
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        NavigationView navigationView = findViewById(R.id.menu_nav);
-        mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_my_publications, R.id.nav_new_publication, R.id.nav_update_user, R.id.nav_log_out)
-                .setDrawerLayout(drawer)
-                .build();
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_book_management);
-        NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
-        NavigationUI.setupWithNavController(navigationView, navController);
+        if (validarSesion()){
+            Toast.makeText(this, "Bienvenido de nuevo",Toast.LENGTH_SHORT).show();
+            DrawerLayout drawer = findViewById(R.id.drawer_layout);
+            NavigationView navigationView = findViewById(R.id.menu_nav);
+            mAppBarConfiguration = new AppBarConfiguration.Builder(
+                    R.id.nav_home, R.id.nav_my_publications, R.id.nav_new_publication, R.id.nav_update_user, R.id.nav_log_out)
+                    .setDrawerLayout(drawer)
+                    .build();
+            NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_book_management);
+            NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
+            NavigationUI.setupWithNavController(navigationView, navController);
 
-        navigationView.bringToFront();
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(MenuItem item) {
-                FragmentManager fragmentManager = getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                switch(item.getItemId()) {
-                    case R.id.nav_home:
-                        Fragment home = new HomeFragment();
-                        fragmentTransaction.replace(R.id.nav_host_fragment_book_management, home).commit();
-                        break;
-                    case R.id.nav_my_publications:
-                        Fragment myP = new MyPublicationsFragment();
-                        fragmentTransaction.replace(R.id.nav_host_fragment_book_management, myP).commit();
-                        //Navigation.findNavController(navigationView).navigate(R.id.nav_my_publications);
-                        break;
-                    case R.id.nav_new_publication:
-                        Fragment newP = new NewPublicationFragment();
-                        fragmentTransaction.replace(R.id.nav_host_fragment_book_management, newP).commit();
-                        break;
-                    case R.id.nav_update_user:
-                        Fragment updateUser = new UpdateUserFragment();
-                        fragmentTransaction.replace(R.id.nav_host_fragment_book_management, updateUser).commit();
-                        break;
-                    case R.id.nav_log_out:
-                        //Toast.makeText(getApplicationContext(),"Cerrar sesion",Toast.LENGTH_SHORT).show();
-                        logout(navigationView);
-                        return true;
+            navigationView.bringToFront();
+            navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+                @Override
+                public boolean onNavigationItemSelected(MenuItem item) {
+                    FragmentManager fragmentManager = getSupportFragmentManager();
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    switch(item.getItemId()) {
+                        case R.id.nav_home:
+                            Fragment home = new HomeFragment();
+                            fragmentTransaction.replace(R.id.nav_host_fragment_book_management, home).commit();
+                            break;
+                        case R.id.nav_my_publications:
+                            Fragment myP = new MyPublicationsFragment();
+                            fragmentTransaction.replace(R.id.nav_host_fragment_book_management, myP).commit();
+                            //Navigation.findNavController(navigationView).navigate(R.id.nav_my_publications);
+                            break;
+                        case R.id.nav_new_publication:
+                            Fragment newP = new NewPublicationFragment();
+                            fragmentTransaction.replace(R.id.nav_host_fragment_book_management, newP).commit();
+                            break;
+                        case R.id.nav_update_user:
+                            Fragment updateUser = new UpdateUserFragment();
+                            fragmentTransaction.replace(R.id.nav_host_fragment_book_management, updateUser).commit();
+                            break;
+                        case R.id.nav_log_out:
+                            //Toast.makeText(getApplicationContext(),"Cerrar sesion",Toast.LENGTH_SHORT).show();
+                            logout(navigationView);
+                            return true;
+                    }
+                    item.setChecked(true);
+                    drawer.closeDrawers();
+                    return true;
                 }
-                item.setChecked(true);
-                drawer.closeDrawers();
-                return true;
-            }
-        });
+            });
+        } else {
+            //Toast.makeText(this, "No hay sesion",Toast.LENGTH_SHORT).show();
+            Intent logout = new Intent(this, login_register.class);
+            startActivity(logout);
+        }
     }
 
     public void logout(View view) {
+        SharedPreferences preferences = getSharedPreferences("user", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("username", "");
+        editor.commit();
         Intent logout = new Intent(this, login_register.class);
         startActivity(logout);
+    }
+
+    public boolean validarSesion(){
+        SharedPreferences prefs = getSharedPreferences("user", MODE_PRIVATE);
+        String user = prefs.getString("username", "");
+        if (user.equals("") || user.isEmpty())
+            return false;
+        else
+            return true;
     }
 
     @Override
