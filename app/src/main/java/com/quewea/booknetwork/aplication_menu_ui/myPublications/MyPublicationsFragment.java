@@ -1,6 +1,9 @@
 package com.quewea.booknetwork.aplication_menu_ui.myPublications;
 
+import android.app.ProgressDialog;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +20,16 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.quewea.booknetwork.Adapter;
+import com.quewea.booknetwork.Book;
 import com.quewea.booknetwork.R;
 import com.quewea.booknetwork.book_management_ui.bookManage.BookManageFragment;
 import com.quewea.booknetwork.login_register_ui.register.RegisterFragment;
@@ -27,7 +39,8 @@ import java.util.ArrayList;
 public class MyPublicationsFragment extends Fragment {
     RecyclerView recyclerView;
     Adapter adapter;
-    ArrayList<String> books;
+    private FirebaseFirestore db;
+    ProgressDialog progressDialog;
 
     private MyPublicationsViewModel myPublicationsViewModel;
 
@@ -45,22 +58,21 @@ public class MyPublicationsFragment extends Fragment {
             }
         });
 
-        books = new ArrayList<>();
-        books.add("CIEN AÑOS DE SOLEDAD");
-        books.add("REBELION EN LA GRANJA");
-        books.add("EL SEÑOR DE LAS MOSCAS");
-        books.add("EL ARTE DE LA GUERRA");
-
+        db = FirebaseFirestore.getInstance();
+        progressDialog = new ProgressDialog(getContext());
+        Bundle delivery = new Bundle();
         recyclerView = root.findViewById(R.id.rvMyPublications);
-        recyclerView.setLayoutManager(new LinearLayoutManager(root.getContext()));
-        adapter = new Adapter(root.getContext(), books);
 
-        adapter.setOnClickListener(new View.OnClickListener() {
+        recyclerView.setLayoutManager(new LinearLayoutManager(root.getContext()));
+        getBooks(root);
+
+        adapter.setOnItemClickListener(new Adapter.OnItemClickListener() {
             @Override
-            public void onClick(View v) {
-                Toast.makeText(getContext(), "TITULO: "
-                        +books.get(recyclerView.getChildAdapterPosition(v)),Toast.LENGTH_SHORT).show();
-                bookManage();
+            public void OnItemClick(DocumentSnapshot documentSnapshot, int position) {
+                //book = documentSnapshot.toObject(Book.class);
+                //Toast.makeText(getContext(), "TITULO: "+documentSnapshot.getId(),Toast.LENGTH_SHORT).show();
+                delivery.putString("id", documentSnapshot.getId());
+                bookManage(delivery);
             }
         });
 
@@ -69,10 +81,34 @@ public class MyPublicationsFragment extends Fragment {
         return root;
     }
 
-    private void bookManage(){
+    private void getBooks(View root){
+        SharedPreferences prefs = getActivity().getSharedPreferences("user", getContext().MODE_PRIVATE);
+        String user = prefs.getString("username", "");
+
+        Query query = db.collection("Books").whereEqualTo("username", user);
+        FirestoreRecyclerOptions<Book> fBook = new FirestoreRecyclerOptions.Builder<Book>()
+                .setQuery(query, Book.class).build();
+        adapter = new Adapter(root.getContext(), fBook);
+        adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        adapter.startListening();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        adapter.stopListening();
+    }
+
+    private void bookManage(Bundle delivery){
         FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         Fragment bookManage = new BookManageFragment();
-        fragmentTransaction.add(R.id.drawer_layout, bookManage).commit();
+        bookManage.setArguments(delivery);
+        fragmentTransaction.add(R.id.nav_host_fragment_book_management, bookManage).commit();
     }
 }

@@ -164,7 +164,7 @@ public class RegisterFragment extends Fragment {
         FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         Fragment login = new LoginFragment();
-        fragmentTransaction.add(R.id.drawer_layout_login, login).commit();
+        fragmentTransaction.replace(R.id.drawer_layout_login, login).commit();
     }
 
 }

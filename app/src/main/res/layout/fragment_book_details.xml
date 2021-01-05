@@ -342,7 +342,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
-                android:id="@+id/update_publication_btn_update"
+                android:id="@+id/update_publication_btn_delete"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
