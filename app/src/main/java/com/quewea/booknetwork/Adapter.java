@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -19,26 +20,23 @@ import java.util.List;
 public class Adapter extends FirestoreRecyclerAdapter<Book, Adapter.ViewHolder> {
     private OnItemClickListener listener;
     private LayoutInflater layoutInflater;
-    //private List<Book> data;
-    //private View.OnClickListener listener;
+    private Context context;
 
     public Adapter(Context context, @NonNull FirestoreRecyclerOptions<Book> data){
         super(data);
         this.layoutInflater = LayoutInflater.from(context);
-//        this.data = data;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View view = layoutInflater.inflate(R.layout.tarjeta, viewGroup, false);
-        //view.setOnClickListener(this);
+        context = viewGroup.getContext();
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position, @NonNull Book book) {
-        //Book book = data.get(position);
         holder.txtTitle.setText(book.getTitle());
         holder.txtAuthor.setText(book.getAuthor());
         holder.txtEditorial.setText(book.getEditorial());
@@ -47,24 +45,8 @@ public class Adapter extends FirestoreRecyclerAdapter<Book, Adapter.ViewHolder> 
         holder.txtLanguage.setText(book.getLanguage());
         holder.txtPages.setText(book.getPages());
         holder.txtDeal.setText(book.getDeal());
-
+        Glide.with(context).load(book.getImg()).fitCenter().centerCrop().into(holder.imgBook);
     }
-
-    //@Override
-    //public int getItemCount() {
-    //    return data.size();
-    //}
-
-    /*public void setOnClickListener(View.OnClickListener listener){
-        this.listener = listener;
-    }
-
-    @Override
-    public void onClick(View v) {
-        if (listener != null){
-            listener.onClick(v);
-        }
-    }*/
 
     public class ViewHolder extends RecyclerView.ViewHolder{
         TextView txtTitle, txtAuthor, txtEditorial, txtYear, txtIsbn, txtLanguage, txtPages, txtDeal;
