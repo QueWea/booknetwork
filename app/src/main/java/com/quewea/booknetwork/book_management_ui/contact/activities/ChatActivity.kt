@@ -4,9 +4,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.firestore.Query
-import com.quewea.myapplication.adapters.MessageAdapter
+import com.quewea.booknetwork.book_management_ui.contact.adapters.MessageAdapter
 import com.quewea.booknetwork.R
-import com.quewea.myapplication.models.Message
+import com.quewea.booknetwork.book_management_ui.contact.models.Message
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_chat.*

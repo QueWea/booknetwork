@@ -1,16 +1,20 @@
 package com.quewea.booknetwork.book_management_ui.contact.activities
 
+import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.quewea.booknetwork.book_management_ui.contact.models.Chat
-import com.quewea.booknetwork.book_management_ui.contact.adapters.ChatAdapter
-import com.quewea.booknetwork.R
+import com.google.android.gms.tasks.OnFailureListener
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.quewea.booknetwork.R
+import com.quewea.booknetwork.book_management_ui.contact.adapters.ChatAdapter
+import com.quewea.booknetwork.book_management_ui.contact.models.Chat
 import kotlinx.android.synthetic.main.activity_list_of_chats.*
 import java.util.*
+
 
 class ListOfChatsActivity : AppCompatActivity() {
     private var user = ""
@@ -21,10 +25,13 @@ class ListOfChatsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_list_of_chats)
 
-        intent.getStringExtra("user")?.let { user = it }
+        val prefs = getSharedPreferences("user", Context.MODE_PRIVATE)
+        val user = prefs.getString("username", "")
 
-        if (user.isNotEmpty()){
-            initViews()
+        if (user != null) {
+            if (user.isNotEmpty()){
+                initViews()
+            }
         }
     }
 
@@ -37,9 +44,14 @@ class ListOfChatsActivity : AppCompatActivity() {
                 chatSelected(chat)
             }
 
-        val userRef = db.collection("users").document(user)
+        val userRef = db.collection("Users").document(user).get().addOnFailureListener(OnFailureListener {
+            Toast.makeText(this, "..---.- es morse", Toast.LENGTH_LONG).show()
+        })
 
-        userRef.collection("chats")
+
+
+
+        /* userRef.collection("chats")
             .get()
             .addOnSuccessListener { chats ->
                 val listChats = chats.toObjects(Chat::class.java)
@@ -56,7 +68,7 @@ class ListOfChatsActivity : AppCompatActivity() {
                         (listChatsRecyclerView.adapter as ChatAdapter).setData(listChats)
                     }
                 }
-            }
+            } */
     }
 
     private fun chatSelected(chat: Chat){

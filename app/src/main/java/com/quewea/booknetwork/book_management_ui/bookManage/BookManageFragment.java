@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,6 +20,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -33,6 +35,7 @@ public class BookManageFragment extends Fragment {
     private String idBook = "";
     private EditText titulo, autor, editorial, yearE, isbn, paginas, trato, lenguaje, sinopsis, condicion;
     private Button btnUpdate, btnDelete;
+    private ImageView imgBook;
     private ProgressDialog progressDialog;
     private FirebaseFirestore db;
 
@@ -114,7 +117,7 @@ public class BookManageFragment extends Fragment {
         condicion = (EditText) root.findViewById(R.id.update_publication_view_text_book_condition);
         btnUpdate = (Button) root.findViewById(R.id.update_publication_btn_update);
         btnDelete = (Button) root.findViewById(R.id.update_publication_btn_delete);
-
+        imgBook = (ImageView) root.findViewById(R.id.new_publication_img_view);
         db = FirebaseFirestore.getInstance();
         progressDialog = new ProgressDialog(getContext());
     }
@@ -136,7 +139,7 @@ public class BookManageFragment extends Fragment {
                 lenguaje.setText(documentSnapshot.get("language").toString());
                 sinopsis.setText(documentSnapshot.get("synopsis").toString());
                 condicion.setText(documentSnapshot.get("condition").toString());
-
+                Glide.with(getContext()).load(documentSnapshot.get("img")).fitCenter().centerCrop().into(imgBook);
                 progressDialog.dismiss();
             }
         });

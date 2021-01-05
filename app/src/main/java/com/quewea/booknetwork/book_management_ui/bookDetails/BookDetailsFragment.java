@@ -1,12 +1,14 @@
 package com.quewea.booknetwork.book_management_ui.bookDetails;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,15 +18,22 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.quewea.booknetwork.R;
+import com.quewea.booknetwork.book_management;
+import com.quewea.booknetwork.book_management_ui.contact.activities.ListOfChatsActivity;
+import com.quewea.booknetwork.book_management_ui.contact.activities.LoginActivity;
+import com.quewea.booknetwork.login_register;
+import com.quewea.booknetwork.login_register_ui.login.LoginFragment;
 
 public class BookDetailsFragment extends Fragment {
     private BookDetailsViewModel bookDetailsViewModel;
     private EditText titulo, autor, editorial, yearE, isbn, paginas, trato, lenguaje, sinopsis, condicion, propietario;
     private Button btnContact;
+    private ImageView imgBook;
     private String idBook = "";
     private ProgressDialog progressDialog;
     private FirebaseFirestore db;
@@ -51,6 +60,9 @@ public class BookDetailsFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getContext(), "Contactando...", Toast.LENGTH_SHORT).show();
+
+                Intent listChats = new Intent(getActivity(), ListOfChatsActivity.class);
+                startActivity(listChats);
             }
         });
 
@@ -79,7 +91,7 @@ public class BookDetailsFragment extends Fragment {
         condicion = (EditText) root.findViewById(R.id.update_publication_view_text_book_condition);
         propietario = (EditText) root.findViewById(R.id.update_publication_view_text_owner);
         btnContact = (Button) root.findViewById(R.id.update_publication_btn_delete);
-
+        imgBook = (ImageView) root.findViewById(R.id.new_publication_img_view);
         db = FirebaseFirestore.getInstance();
         progressDialog = new ProgressDialog(getContext());
     }
@@ -101,6 +113,7 @@ public class BookDetailsFragment extends Fragment {
                 lenguaje.setText(documentSnapshot.get("language").toString());
                 sinopsis.setText(documentSnapshot.get("synopsis").toString());
                 condicion.setText(documentSnapshot.get("condition").toString());
+                Glide.with(getContext()).load(documentSnapshot.get("img")).fitCenter().centerCrop().into(imgBook);
                 getUser(documentSnapshot.get("username").toString());
                 progressDialog.dismiss();
             }

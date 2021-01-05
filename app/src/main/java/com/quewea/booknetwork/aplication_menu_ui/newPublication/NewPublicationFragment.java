@@ -1,14 +1,20 @@
 package com.quewea.booknetwork.aplication_menu_ui.newPublication;
 
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,11 +26,16 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.google.gson.internal.$Gson$Preconditions;
 import com.quewea.booknetwork.R;
 import com.quewea.booknetwork.aplication_menu_ui.myPublications.MyPublicationsFragment;
@@ -36,9 +47,13 @@ import java.util.UUID;
 
 public class NewPublicationFragment extends Fragment {
     private EditText titulo, autor, editorial, yearE, isbn, paginas, trato, lenguaje, sinopsis, condicion;
-    private Button btnPub;
+    private Button btnPub, btnImg;
+    private ImageView imgBook;
     private ProgressDialog progressDialog;
     private FirebaseFirestore db;
+    private StorageReference storage;
+    private String url;
+    private static final int GALLERY_INTENT = 1;
 
     private NewPublicationViewModel newPublicationViewModel;
 
@@ -61,16 +76,59 @@ public class NewPublicationFragment extends Fragment {
         btnPub.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                ocultarTeclado();
                 publicar();
+            }
+        });
+
+        btnImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(Intent.ACTION_PICK);
+                i.setType("image/*");
+                startActivityForResult(i, GALLERY_INTENT);
             }
         });
 
         return root;
     }
 
+    private void ocultarTeclado(){
+        View v = getActivity().getCurrentFocus();
+        if (v != null) {
+            InputMethodManager inputMethodManager = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+            inputMethodManager.hideSoftInputFromWindow(v.getWindowToken(), 0);
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == GALLERY_INTENT && resultCode == getActivity().RESULT_OK){
+            Uri uri = data.getData();
+            StorageReference filePath = storage.child("booksImages").child(uri.getLastPathSegment());
+            filePath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    Task<Uri> imgDownload = taskSnapshot.getStorage().getDownloadUrl();
+                    imgDownload.addOnSuccessListener(new OnSuccessListener<Uri>() {
+                        @Override
+                        public void onSuccess(Uri uri) {
+                            url = uri.toString();
+                            Toast.makeText(getContext(), "Foto cargada correctamente", Toast.LENGTH_SHORT);
+                            Log.i("URL ",url);
+                            Glide.with(getContext()).load(url).fitCenter().centerCrop().into(imgBook);
+                        }
+                    });
+                }
+            });
+        }
+    }
+
     private void inicializar(View root){
         FirebaseApp.initializeApp(getContext());
         db = FirebaseFirestore.getInstance();
+        storage = FirebaseStorage.getInstance().getReference();
         progressDialog = new ProgressDialog(getContext());
         titulo = (EditText) root.findViewById(R.id.new_publication_edit_text_title);
         autor = (EditText) root.findViewById(R.id.new_publication_edit_text_autor);
@@ -83,6 +141,8 @@ public class NewPublicationFragment extends Fragment {
         sinopsis = (EditText) root.findViewById(R.id.new_publication_edit_text_synopsis);
         condicion = (EditText) root.findViewById(R.id.new_publication_edit_text_book_condition);
         btnPub = (Button) root.findViewById(R.id.new_publication_btn_publish);
+        btnImg = (Button) root.findViewById(R.id.brnImg);
+        imgBook = (ImageView) root.findViewById(R.id.new_publication_img_view);
     }
 
     private void publicar(){
@@ -96,6 +156,7 @@ public class NewPublicationFragment extends Fragment {
         String language = lenguaje.getText().toString();
         String synopsis = sinopsis.getText().toString();
         String condition = condicion.getText().toString();
+        String imgUrl = url;
         SharedPreferences prefs = getActivity().getSharedPreferences("user", getContext().MODE_PRIVATE);
         String user = prefs.getString("username", "");
 
@@ -108,7 +169,8 @@ public class NewPublicationFragment extends Fragment {
                 !validacionCampo(deal, trato) ||
                 !validacionCampo(language, lenguaje) ||
                 !validacionCampo(synopsis, sinopsis) ||
-                !validacionCampo(condition, condicion))
+                !validacionCampo(condition, condicion)||
+                !validacionCampoImg(imgUrl))
             return;
         else {
             progressDialog.setMessage("Publicando...");
@@ -126,6 +188,7 @@ public class NewPublicationFragment extends Fragment {
             b.put("synopsis", synopsis);
             b.put("condition", condition);
             b.put("username", user);
+            b.put("img", url);
             db.collection("Books")
                     .add(b)
                     .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
@@ -155,6 +218,14 @@ public class NewPublicationFragment extends Fragment {
         if(TextUtils.isEmpty(dato)){
             campo.setError("Required");
             Toast.makeText(getContext(),"Debe llenar todos los campos",Toast.LENGTH_LONG).show();
+            return false;
+        } else
+            return true;
+    }
+
+    private boolean validacionCampoImg(String dato){
+        if(TextUtils.isEmpty(dato)){
+            Toast.makeText(getContext(),"Debe seleccionar una imagen",Toast.LENGTH_LONG).show();
             return false;
         } else
             return true;

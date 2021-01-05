@@ -10,7 +10,6 @@ import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity() {
-
     private val auth = Firebase.auth
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,7 +19,7 @@ class LoginActivity : AppCompatActivity() {
         loginButton.setOnClickListener { loginUser() }
         createButton.setOnClickListener { createUser() }
 
-        checkUser()
+        //checkUser()
     }
 
     private fun checkUser(){

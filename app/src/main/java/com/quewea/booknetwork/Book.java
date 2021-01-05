@@ -9,11 +9,12 @@ public class Book {
     private String language;
     private String pages;
     private String deal;
+    private String img;
 
     public Book () { }
 
     public Book (String title, String author, String editorial, String year,
-                 String isbn, String language, String pages, String deal) {
+                 String isbn, String language, String pages, String deal, String img) {
         this.title = title;
         this.author = author;
         this.editorial = editorial;
@@ -22,6 +23,15 @@ public class Book {
         this.language = language;
         this.pages = pages;
         this.deal = deal;
+        this.img = img;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
     }
 
     public String getEditorial() {
