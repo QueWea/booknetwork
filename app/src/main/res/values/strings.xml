@@ -73,6 +73,7 @@
     // book management
     <string name="book_management_year_edition_book_management">Year</string>
     <string name="book_management_btn_update">Update</string>
+    <string name="book_management_btn_delete">Delete</string>
 
     // book details
     <string name="book_details_owner">Owner</string>

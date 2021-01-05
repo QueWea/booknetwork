@@ -327,14 +327,14 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
-                android:id="@+id/update_publication_btn_update"
+                android:id="@+id/update_publication_btn_delete"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginRight="8dp"
                 android:layout_marginBottom="120dp"
-                android:text="@string/new_publication_btn_publish"
+                android:text="@string/book_management_btn_delete"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/guideline4"
                 app:layout_constraintStart_toStartOf="@+id/txt_input_layout_book_condition"
@@ -348,17 +348,17 @@
                 app:layout_constraintGuide_percent="0.685" />
 
             <Button
-                android:id="@+id/book_manage_btn_update"
+                android:id="@+id/update_publication_btn_update"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginLeft="8dp"
                 android:backgroundTint="@color/primary_green"
                 android:text="@string/book_management_btn_update"
-                app:layout_constraintBottom_toBottomOf="@+id/update_publication_btn_update"
+                app:layout_constraintBottom_toBottomOf="@+id/update_publication_btn_delete"
                 app:layout_constraintEnd_toEndOf="@+id/txt_input_layout_book_condition"
                 app:layout_constraintStart_toStartOf="@+id/guideline4"
-                app:layout_constraintTop_toTopOf="@+id/update_publication_btn_update" />
+                app:layout_constraintTop_toTopOf="@+id/update_publication_btn_delete" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline4"

@@ -23,7 +23,7 @@
             android:padding="5dp">
 
             <ImageView
-                android:id="@+id/imageView2"
+                android:id="@+id/imgBook"
                 android:layout_width="140dp"
                 android:layout_height="200dp"
                 android:contentDescription="book"
@@ -43,7 +43,7 @@
                 android:textSize="22sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toEndOf="@+id/imageView2"
+                app:layout_constraintStart_toEndOf="@+id/imgBook"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
@@ -57,7 +57,7 @@
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/imageView2"
+                app:layout_constraintStart_toEndOf="@+id/imgBook"
                 app:layout_constraintTop_toBottomOf="@+id/txtTitulo" />
 
             <TextView
@@ -70,7 +70,7 @@
                 android:text="Editorial:"
                 android:textColor="@color/black"
                 android:textSize="12sp"
-                app:layout_constraintStart_toEndOf="@+id/imageView2"
+                app:layout_constraintStart_toEndOf="@+id/imgBook"
                 app:layout_constraintTop_toBottomOf="@+id/txtAuthor" />
 
             <TextView
@@ -83,7 +83,7 @@
                 android:text="Year of edition:"
                 android:textColor="@color/black"
                 android:textSize="12sp"
-                app:layout_constraintStart_toEndOf="@+id/imageView2"
+                app:layout_constraintStart_toEndOf="@+id/imgBook"
                 app:layout_constraintTop_toBottomOf="@+id/lbEditorial" />
 
             <TextView
@@ -96,7 +96,7 @@
                 android:text="ISBN:"
                 android:textColor="@color/black"
                 android:textSize="12sp"
-                app:layout_constraintStart_toEndOf="@+id/imageView2"
+                app:layout_constraintStart_toEndOf="@+id/imgBook"
                 app:layout_constraintTop_toBottomOf="@+id/lbYear" />
 
             <TextView
@@ -109,7 +109,7 @@
                 android:text="Language:"
                 android:textColor="@color/black"
                 android:textSize="12sp"
-                app:layout_constraintStart_toEndOf="@+id/imageView2"
+                app:layout_constraintStart_toEndOf="@+id/imgBook"
                 app:layout_constraintTop_toBottomOf="@+id/lbISBN" />
 
             <TextView
@@ -122,7 +122,7 @@
                 android:text="Pages:"
                 android:textColor="@color/black"
                 android:textSize="12sp"
-                app:layout_constraintStart_toEndOf="@+id/imageView2"
+                app:layout_constraintStart_toEndOf="@+id/imgBook"
                 app:layout_constraintTop_toBottomOf="@+id/lbLanguage" />
 
             <TextView
@@ -136,7 +136,7 @@
                 android:textColor="@color/black"
                 android:textSize="12sp"
                 app:layout_constraintBottom_toTopOf="@+id/txtView"
-                app:layout_constraintStart_toEndOf="@+id/imageView2"
+                app:layout_constraintStart_toEndOf="@+id/imgBook"
                 app:layout_constraintTop_toBottomOf="@+id/lbPages"
                 app:layout_constraintVertical_bias="0.0" />
 
