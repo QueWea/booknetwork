@@ -24,8 +24,8 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.quewea.booknetwork.R;
 import com.quewea.booknetwork.book_management;
-import com.quewea.booknetwork.book_management_ui.contact.activities.ListOfChatsActivity;
-import com.quewea.booknetwork.book_management_ui.contact.activities.LoginActivity;
+//import com.quewea.booknetwork.book_management_ui.contact.activities.ListOfChatsActivity;
+//import com.quewea.booknetwork.book_management_ui.contact.activities.LoginActivity;
 import com.quewea.booknetwork.login_register;
 import com.quewea.booknetwork.login_register_ui.login.LoginFragment;
 
@@ -61,8 +61,8 @@ public class BookDetailsFragment extends Fragment {
             public void onClick(View v) {
                 Toast.makeText(getContext(), "Contactando...", Toast.LENGTH_SHORT).show();
 
-                Intent listChats = new Intent(getActivity(), ListOfChatsActivity.class);
-                startActivity(listChats);
+                //Intent listChats = new Intent(getActivity(), ListOfChatsActivity.class);
+                //startActivity(listChats);
             }
         });
 

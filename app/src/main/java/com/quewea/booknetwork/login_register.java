@@ -39,4 +39,9 @@ public class login_register extends AppCompatActivity{
         fragmentTransaction.add(R.id.drawer_layout_login, login).commit();
     }
 
+    @Override
+    public void onBackPressed() {
+
+    }
+
 }
