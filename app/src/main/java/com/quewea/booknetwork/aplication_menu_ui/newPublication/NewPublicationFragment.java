@@ -36,14 +36,11 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-import com.google.gson.internal.$Gson$Preconditions;
 import com.quewea.booknetwork.R;
 import com.quewea.booknetwork.aplication_menu_ui.myPublications.MyPublicationsFragment;
-import com.quewea.booknetwork.login_register_ui.login.LoginFragment;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.UUID;
 
 public class NewPublicationFragment extends Fragment {
     private EditText titulo, autor, editorial, yearE, isbn, paginas, trato, lenguaje, sinopsis, condicion;
