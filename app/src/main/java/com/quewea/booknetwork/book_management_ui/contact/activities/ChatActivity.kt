@@ -14,6 +14,7 @@ import kotlinx.android.synthetic.main.activity_chat.*
 class ChatActivity : AppCompatActivity() {
     private var chatId = ""
     private var user = ""
+    private var titleChat = ""
 
     private var db = Firebase.firestore
 
@@ -23,6 +24,7 @@ class ChatActivity : AppCompatActivity() {
 
         intent.getStringExtra("chatId")?.let { chatId = it }
         intent.getStringExtra("user")?.let { user = it }
+        intent.getStringExtra("titleChat")?.let { titleChat = it }
 
         if(chatId.isNotEmpty() && user.isNotEmpty()) {
             initViews()
@@ -30,12 +32,14 @@ class ChatActivity : AppCompatActivity() {
     }
 
     private fun initViews(){
+        messageTitle.setText(titleChat)
+
         messagesRecylerView.layoutManager = LinearLayoutManager(this)
         messagesRecylerView.adapter = MessageAdapter(user)
 
-        sendMessageButton.setOnClickListener { sendMessage() }
+        sendMessageButton.setOnClickListener { if (messageTextField.text.toString() != "" && messageTextField.text.toString().isNotEmpty()) sendMessage() }
 
-        val chatRef = db.collection("chats").document(chatId)
+        val chatRef = db.collection("Chats").document(chatId)
 
         chatRef.collection("messages").orderBy("dob", Query.Direction.ASCENDING)
             .get()
@@ -61,7 +65,7 @@ class ChatActivity : AppCompatActivity() {
             from = user
         )
 
-        db.collection("chats").document(chatId).collection("messages").document().set(message)
+        db.collection("Chats").document(chatId).collection("messages").document().set(message)
         messageTextField.setText("")
     }
 }

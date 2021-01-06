@@ -18,6 +18,7 @@ import com.quewea.booknetwork.aplication_menu_ui.home.HomeFragment;
 import com.quewea.booknetwork.aplication_menu_ui.myPublications.MyPublicationsFragment;
 import com.quewea.booknetwork.aplication_menu_ui.newPublication.NewPublicationFragment;
 import com.quewea.booknetwork.aplication_menu_ui.updateUser.UpdateUserFragment;
+import com.quewea.booknetwork.book_management_ui.contact.activities.ListOfChatsActivity;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -95,7 +96,7 @@ public class book_management extends AppCompatActivity {
             });
         } else {
             //Toast.makeText(this, "No hay sesion",Toast.LENGTH_SHORT).show();
-            Intent logout = new Intent(this, login_register.class);
+            Intent logout = new Intent(this, ListOfChatsActivity.class);
             startActivity(logout);
         }
     }

@@ -2,6 +2,7 @@ package com.quewea.booknetwork.book_management_ui.bookDetails;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,11 +24,10 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.quewea.booknetwork.R;
-import com.quewea.booknetwork.book_management;
+import com.quewea.booknetwork.book_management_ui.contact.activities.ListOfChatsActivity;
 //import com.quewea.booknetwork.book_management_ui.contact.activities.ListOfChatsActivity;
 //import com.quewea.booknetwork.book_management_ui.contact.activities.LoginActivity;
-import com.quewea.booknetwork.login_register;
-import com.quewea.booknetwork.login_register_ui.login.LoginFragment;
+
 
 public class BookDetailsFragment extends Fragment {
     private BookDetailsViewModel bookDetailsViewModel;
@@ -37,6 +37,7 @@ public class BookDetailsFragment extends Fragment {
     private String idBook = "";
     private ProgressDialog progressDialog;
     private FirebaseFirestore db;
+    final String[] dataMessage = {"", "", "", "", ""};
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -61,8 +62,13 @@ public class BookDetailsFragment extends Fragment {
             public void onClick(View v) {
                 Toast.makeText(getContext(), "Contactando...", Toast.LENGTH_SHORT).show();
 
-                //Intent listChats = new Intent(getActivity(), ListOfChatsActivity.class);
-                //startActivity(listChats);
+                Intent listChats = new Intent(getActivity(), ListOfChatsActivity.class);
+                listChats.putExtra("titulo", dataMessage[0]);
+                listChats.putExtra("owner", dataMessage[1]);
+                listChats.putExtra("email", dataMessage[2]);
+                listChats.putExtra("nameUserLog", dataMessage[3]);
+                listChats.putExtra("idBook", idBook);
+                startActivity(listChats);
             }
         });
 
@@ -104,6 +110,7 @@ public class BookDetailsFragment extends Fragment {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 titulo.setText(documentSnapshot.get("title").toString());
+                dataMessage[0] = documentSnapshot.get("title").toString();
                 autor.setText(documentSnapshot.get("author").toString());
                 editorial.setText(documentSnapshot.get("editorial").toString());
                 yearE.setText(documentSnapshot.get("year").toString());
@@ -114,7 +121,8 @@ public class BookDetailsFragment extends Fragment {
                 sinopsis.setText(documentSnapshot.get("synopsis").toString());
                 condicion.setText(documentSnapshot.get("condition").toString());
                 Glide.with(getContext()).load(documentSnapshot.get("img")).fitCenter().centerCrop().into(imgBook);
-                getUser(documentSnapshot.get("username").toString());
+                getOwner(documentSnapshot.get("username").toString());
+                dataMessage[2] = documentSnapshot.get("username").toString();
                 progressDialog.dismiss();
             }
         });
@@ -126,6 +134,27 @@ public class BookDetailsFragment extends Fragment {
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 propietario.setText(documentSnapshot.get("firstname").toString()
                         +" "+documentSnapshot.get("lastname").toString());
+            }
+        });
+    }
+
+    private void getOwner(String username){
+        db.collection("Users").document(username).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                dataMessage[1] = documentSnapshot.get("firstname").toString()
+                        + " " + documentSnapshot.get("lastname").toString();
+                propietario.setText(dataMessage[1]);
+            }
+        });
+    }
+
+    private void getnameUserLog(String username) {
+        db.collection("Users").document(username).get().addOnSuccessListener (new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                dataMessage[3] = (documentSnapshot.get("firstname").toString()
+                        + " " + documentSnapshot.get("lastname").toString());
             }
         });
     }
