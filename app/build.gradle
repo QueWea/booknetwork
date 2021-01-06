@@ -53,25 +53,15 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.2.0'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
     implementation 'com.google.firebase:firebase-database:19.3.0'
-<<<<<<< HEAD
-<<<<<<< HEAD
     implementation 'com.google.firebase:firebase-auth-ktx:19.4.0'
     implementation 'com.google.firebase:firebase-firestore-ktx:21.7.1'
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-=======
-<<<<<<< HEAD
->>>>>>> 3a1bd01a594ba2a5abddb38b5a38b54ba8ea0f27
-=======
-//<<<<<<< HEAD
->>>>>>> 8a74502b8c038ed85fdd58753f168587c005c4fb
     implementation 'com.google.firebase:firebase-auth:20.0.1'
     implementation 'com.google.firebase:firebase-storage:19.2.1'
-//=======
     implementation 'com.google.firebase:firebase-auth-ktx:19.4.0'
     implementation 'com.google.firebase:firebase-firestore-ktx:21.7.1'
-    //implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'com.google.firebase:firebase-auth:20.0.1'
-//>>>>>>> 43ec79e... más weas del chat
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
