@@ -4,9 +4,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.Layout;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -32,7 +34,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 public class book_management extends AppCompatActivity {
-
+    private String user;
     private AppBarConfiguration mAppBarConfiguration;
 
     @Override
@@ -55,6 +57,11 @@ public class book_management extends AppCompatActivity {
                     R.id.nav_home, R.id.nav_my_publications, R.id.nav_new_publication, R.id.nav_update_user, R.id.nav_log_out)
                     .setDrawerLayout(drawer)
                     .build();
+
+            View headView = navigationView.getHeaderView(0);
+            TextView txtUser = headView.findViewById(R.id.txtUser);
+            txtUser.setText(user);
+
             NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_book_management);
             NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
             NavigationUI.setupWithNavController(navigationView, navController);
@@ -111,7 +118,7 @@ public class book_management extends AppCompatActivity {
 
     public boolean validarSesion(){
         SharedPreferences prefs = getSharedPreferences("user", MODE_PRIVATE);
-        String user = prefs.getString("username", "");
+        user = prefs.getString("username", "");
         if (user.equals("") || user.isEmpty())
             return false;
         else
