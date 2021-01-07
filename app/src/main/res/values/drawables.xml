@@ -14,4 +14,5 @@
     <item name="dw_logout" type="drawable">@drawable/ic_logout</item>
     <item name="dw_fondo" type="drawable">@drawable/fondo</item>
     <item name="dw_book_sample" type="drawable">@drawable/book_sample</item>
+    <item name="dw_back" type="drawable">@drawable/ic_navigate_before</item>
 </resources>

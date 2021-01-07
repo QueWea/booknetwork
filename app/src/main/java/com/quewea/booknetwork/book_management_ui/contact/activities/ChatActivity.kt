@@ -31,8 +31,12 @@ class ChatActivity : AppCompatActivity() {
         }
     }
 
-    private fun initViews(){
-        messageTitle.setText(titleChat)
+    private fun initViews() {
+        db.collection("Chats").document(chatId).get().addOnSuccessListener { documentSnapshot ->
+            if (documentSnapshot.exists())
+                titleChat = documentSnapshot.getString("name").toString()
+                messageTitle.setText("titleChat")
+        }
 
         messagesRecylerView.layoutManager = LinearLayoutManager(this)
         messagesRecylerView.adapter = MessageAdapter(user)

@@ -4,7 +4,6 @@ import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.firestore.ktx.firestore
@@ -14,6 +13,7 @@ import com.quewea.booknetwork.book_management_ui.contact.adapters.ChatAdapter
 import com.quewea.booknetwork.book_management_ui.contact.models.Chat
 import kotlinx.android.synthetic.main.activity_list_of_chats.*
 import java.util.*
+
 @Suppress("DEPRECATION")
 
 class ListOfChatsActivity : AppCompatActivity() {
@@ -45,7 +45,6 @@ class ListOfChatsActivity : AppCompatActivity() {
         getnameUserLog(emailUserLog)
         progressDialog.dismiss()
 
-        Toast.makeText(this, "...$emailOwnerBook", Toast.LENGTH_SHORT).show();
         if (emailUserLog != null) {
             if (emailUserLog.isNotEmpty()){
                 initViews()
@@ -53,7 +52,12 @@ class ListOfChatsActivity : AppCompatActivity() {
         }
     }
 
+
     private fun initViews() {
+        btn_back.setOnClickListener {
+            finish();
+        }
+
         var idChat = ""
             db.collection("Chats")
                     .whereEqualTo("idBook", idBook)
@@ -70,8 +74,6 @@ class ListOfChatsActivity : AppCompatActivity() {
                         else newChat()
 
             }
-
-
 
             listChatsRecyclerView.layoutManager = LinearLayoutManager(this)
         listChatsRecyclerView.adapter =
@@ -114,6 +116,15 @@ class ListOfChatsActivity : AppCompatActivity() {
         val users = listOf(nameUserLog, ownerName)
 
         val chat = Chat(
+                id = chatId,
+                idBook = idBook,
+                name = "Chat entre $users para el libro de $tituloBook",
+                users = users,
+                idOwner = emailOwnerBook,
+                idUser = emailUserLog
+        )
+
+        val chatUserLog = Chat(
             id = chatId,
             idBook = idBook,
             name = "Chat con $ownerName para el libro de $tituloBook",
@@ -122,9 +133,18 @@ class ListOfChatsActivity : AppCompatActivity() {
             idUser = emailUserLog
         )
 
+        val chatOwner = Chat(
+                id = chatId,
+                idBook = idBook,
+                name = "Chat con $nameUserLog para el libro de $tituloBook",
+                users = users,
+                idOwner = emailOwnerBook,
+                idUser = emailUserLog
+        )
+
         db.collection("Chats").document(chatId).set(chat)
-        db.collection("Users").document(emailUserLog).collection("Chats").document(chatId).set(chat)
-        db.collection("Users").document(otherUser).collection("Chats").document(chatId).set(chat)
+        db.collection("Users").document(emailUserLog).collection("Chats").document(chatId).set(chatUserLog)
+        db.collection("Users").document(otherUser).collection("Chats").document(chatId).set(chatOwner)
 
         startChat(chatId)
     }

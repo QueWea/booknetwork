@@ -126,4 +126,22 @@
     <style name="Theme.Booknetwork.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.Booknetwork.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="btn_back">
+        <item name="android:layout_marginStart">40dp</item>
+        <item name="android:layout_marginLeft">40dp</item>
+        <item name="android:layout_marginTop">32dp</item>
+        <item name="android:background">?attr/selectableItemBackgroundBorderless</item>
+        <item name="android:padding">3dp</item>
+        <item name="android:scaleX">2</item>
+        <item name="android:scaleY">2.2</item>
+        <item name="android:src">@drawable/dw_back</item>
+    </style>
+
+    <style name="myMessage">
+        <item name="android:background">@color/primary_red</item>
+    </style>
+    <style name="otherMessage">
+        <item name="android:background">@color/primary_green</item>
+    </style>
 </resources>
