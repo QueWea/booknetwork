@@ -156,8 +156,8 @@
                     style="@style/edit_text_view_image"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:maxWidth="45dp"
-                    android:minWidth="40dp" />
+                    android:maxWidth="50dp"
+                    android:minWidth="50dp" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <ImageView

@@ -26,6 +26,7 @@
         <item name="android:textColorHint">@color/white</item>
         <item name="boxStrokeColor">@color/colors_inpu_text</item>
         <item name="android:linksClickable">false</item>
+        <item name="android:scrollbars">vertical</item>
     </style>
 
     <style name="input_layoud_text_view">
@@ -62,6 +63,8 @@
 
     <style name="multi_view_text" parent="view_text">
         <item name="android:textColor">@color/white</item>
+        <item name="android:scrollbars">vertical</item>
+        <item name="android:verticalScrollbarPosition">defaultPosition</item>
     </style>
     >
 

@@ -6,7 +6,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.ui.AppBarConfiguration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -19,11 +18,11 @@ import java.util.*
 
 class ListOfChatsActivity : AppCompatActivity() {
     private var idBook = ""
-    private var user = ""
-    private var titulo = ""
-    private var owner = ""
-    private var email = ""
-    private var nameUser = ""
+    private var emailUserLog = ""
+    private var tituloBook = ""
+    private var ownerName = ""
+    private var emailOwnerBook = ""
+    private var nameUserLog = ""
 
     private var db = Firebase.firestore
 
@@ -34,21 +33,21 @@ class ListOfChatsActivity : AppCompatActivity() {
         val progressDialog = ProgressDialog(this@ListOfChatsActivity)
 
         val prefs = getSharedPreferences("user", Context.MODE_PRIVATE)
-        user = prefs.getString("username", "").toString()
+        emailUserLog = prefs.getString("username", "").toString()
 
 
         progressDialog.setMessage("Cargando información...")
         progressDialog.show()
-        titulo = intent.extras?.getString("titulo").toString()
-        owner = intent.extras?.getString("owner").toString()
-        email = intent.extras?.getString("email").toString()
+        tituloBook = intent.extras?.getString("titulo").toString()
+        ownerName = intent.extras?.getString("owner").toString()
+        emailOwnerBook = intent.extras?.getString("email").toString()
         idBook = intent.extras?.getString("idBook").toString()
-        getnameUserLog(user)
+        getnameUserLog(emailUserLog)
         progressDialog.dismiss()
 
-        Toast.makeText(this, "...$nameUser", Toast.LENGTH_SHORT).show();
-        if (user != null) {
-            if (user.isNotEmpty()){
+        Toast.makeText(this, "...$emailOwnerBook", Toast.LENGTH_SHORT).show();
+        if (emailUserLog != null) {
+            if (emailUserLog.isNotEmpty()){
                 initViews()
             }
         }
@@ -58,14 +57,15 @@ class ListOfChatsActivity : AppCompatActivity() {
         var idChat = ""
             db.collection("Chats")
                     .whereEqualTo("idBook", idBook)
-                    .whereEqualTo("idUser", user)
-                    .whereEqualTo("idOwner", email)
+                    .whereEqualTo("idUser", emailUserLog)
+                    .whereEqualTo("idOwner", emailOwnerBook)
                     .limit(1)
                     .get().addOnSuccessListener { documentSnapshot ->
-                for (document in documentSnapshot){
+                for (document in documentSnapshot) {
                     idChat = (document.id)}
-                        if (idChat != null && idChat.isNotEmpty()) startChat(idChat)
-                        else if (email.isNotEmpty()) newChat()
+                        if (emailOwnerBook == "d") {
+                            /* newChat() */
+                        } else if (idChat != null && idChat.isNotEmpty()) startChat(idChat)
             }
 
 
@@ -76,7 +76,7 @@ class ListOfChatsActivity : AppCompatActivity() {
                 chatSelected(chat)
             }
 
-        val userRef = db.collection("Users").document(user)
+        val userRef = db.collection("Users").document(emailUserLog)
 
         userRef.collection("Chats")
             .get()
@@ -101,26 +101,26 @@ class ListOfChatsActivity : AppCompatActivity() {
     private fun chatSelected(chat: Chat){
         val intent = Intent(this, ChatActivity::class.java)
         intent.putExtra("chatId", chat.id)
-        intent.putExtra("user", user)
+        intent.putExtra("user", emailUserLog)
         startActivity(intent)
     }
 
     private fun newChat(){
         val chatId = UUID.randomUUID().toString()
-        val otherUser = email
-        val users = listOf(nameUser, owner)
+        val otherUser = emailOwnerBook
+        val users = listOf(nameUserLog, ownerName)
 
         val chat = Chat(
             id = chatId,
             idBook = idBook,
-            name = "Chat con $owner para el libro de $titulo",
+            name = "Chat con $ownerName para el libro de $tituloBook",
             users = users,
-            idOwner = email,
-            idUser = user
+            idOwner = emailOwnerBook,
+            idUser = emailUserLog
         )
 
         db.collection("Chats").document(chatId).set(chat)
-        db.collection("Users").document(user).collection("Chats").document(chatId).set(chat)
+        db.collection("Users").document(emailUserLog).collection("Chats").document(chatId).set(chat)
         db.collection("Users").document(otherUser).collection("Chats").document(chatId).set(chat)
 
         startChat(chatId)
@@ -129,14 +129,14 @@ class ListOfChatsActivity : AppCompatActivity() {
     private fun startChat(chatId: String) {
         val intent = Intent(this, ChatActivity::class.java)
         intent.putExtra("chatId", chatId)
-        intent.putExtra("user", user)
-        intent.putExtra("titleChat", "Chat con $owner para el libro de $titulo")
+        intent.putExtra("user", emailUserLog)
+        intent.putExtra("titleChat", "Chat con $ownerName para el libro de $tituloBook")
         startActivity(intent)
     }
 
     private fun getnameUserLog(username: String) {
         db.collection("Users").document(username).get().addOnSuccessListener { documentSnapshot ->
-            nameUser = (documentSnapshot["firstname"].toString()
+            nameUserLog = (documentSnapshot["firstname"].toString()
                     + " " + documentSnapshot["lastname"].toString())
         }
     }
