@@ -7,8 +7,10 @@
     <item name="dw_book_details_isbn" type="drawable">@drawable/ic_isbn</item>
     <item name="dw_book_details_languaje" type="drawable">@drawable/ic_language</item>
     <item name="dw_user" type="drawable">@drawable/ic_user</item>
+    <item name="dw_user_nav" type="drawable">@drawable/ic_user_nav</item>
     <item name="dw_visibility" type="drawable">@drawable/ic_visibility</item>
     <item name="dw_login" type="drawable">@drawable/ic_login</item>
+    <item name="dw_message" type="drawable">@drawable/ic_chat</item>
     <item name="dw_logout" type="drawable">@drawable/ic_logout</item>
     <item name="dw_fondo" type="drawable">@drawable/fondo</item>
     <item name="dw_book_sample" type="drawable">@drawable/book_sample</item>

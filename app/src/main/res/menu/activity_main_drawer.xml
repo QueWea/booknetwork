@@ -18,11 +18,11 @@
             android:title="@string/menu_new_publication" />
         <item
             android:id="@+id/nav_update_user"
-            android:icon="@drawable/dw_user"
+            android:icon="@drawable/dw_user_nav"
             android:title="@string/menu_update_user" />
         <item
             android:id="@+id/nav_chat"
-            android:icon="@drawable/dw_menu_my_publications"
+            android:icon="@drawable/dw_message"
             android:title="@string/menu_chat" />
         <item
             android:id="@+id/nav_log_out"
