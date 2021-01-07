@@ -3,7 +3,7 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Juancho</string>
-    <string name="nav_header_subtitle">2 publicaciones activas</string>
+    <string name="nav_header_subtitle">Cuenta activa</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
@@ -12,6 +12,7 @@
     <string name="menu_new_publication">New publication</string>
     <string name="menu_update_user">Update user</string>
     <string name="menu_log_out">Log out</string>
+    <string name="menu_chat">Chats</string>
 
     <string name="none"></string>
 
@@ -32,13 +33,13 @@
     <string name="new_publication_year_edition">Year of edition</string>
     <string name="new_publication_isbn">ISBN</string>
     <string name="new_publication_pages">Pages</string>
-    <string name="new_publication_languaje">Languaje</string>
+    <string name="new_publication_languaje">Language</string>
     <string name="new_publication_type_deal">Type of deal</string>
     <string name="new_publication_synopsis">Synopsis</string>
     <string name="new_publication_book_condition">Book Condition</string>
     <string name="new_publication_book_Image">Book Image</string>
 
-    <string name="new_publication_btn_select_image">Select image</string>
+    <string name="new_publication_btn_select_image">Select Image</string>
     <string name="new_publication_btn_publish">Publish</string>
 
     //User Update

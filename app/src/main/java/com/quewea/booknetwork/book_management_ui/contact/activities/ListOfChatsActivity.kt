@@ -56,11 +56,18 @@ class ListOfChatsActivity : AppCompatActivity() {
 
     private fun initViews() {
         var idChat = ""
-            db.collection("Chats").document(idBook).get().addOnSuccessListener { documentSnapshot ->
-                idChat = (documentSnapshot["id"].toString())
+            db.collection("Chats")
+                    .whereEqualTo("idBook", idBook)
+                    .whereEqualTo("idUser", user)
+                    .whereEqualTo("idOwner", email)
+                    .limit(1)
+                    .get().addOnSuccessListener { documentSnapshot ->
+                for (document in documentSnapshot){
+                    idChat = (document.id)}
+                        if (idChat != null && idChat.isNotEmpty()) startChat(idChat)
+                        else if (email.isNotEmpty()) newChat()
             }
-        if (idChat != null && idChat.isNotEmpty()) startChat(idChat)
-        else if (email.isNotEmpty()) newChat()
+
 
 
             listChatsRecyclerView.layoutManager = LinearLayoutManager(this)
@@ -107,7 +114,9 @@ class ListOfChatsActivity : AppCompatActivity() {
             id = chatId,
             idBook = idBook,
             name = "Chat con $owner para el libro de $titulo",
-            users = users
+            users = users,
+            idOwner = email,
+            idUser = user
         )
 
         db.collection("Chats").document(chatId).set(chat)

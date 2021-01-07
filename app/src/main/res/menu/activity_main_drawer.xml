@@ -21,6 +21,10 @@
             android:icon="@drawable/dw_user"
             android:title="@string/menu_update_user" />
         <item
+            android:id="@+id/nav_chat"
+            android:icon="@drawable/dw_menu_my_publications"
+            android:title="@string/menu_chat" />
+        <item
             android:id="@+id/nav_log_out"
             android:icon="@drawable/dw_logout"
             android:title="@string/menu_log_out" />

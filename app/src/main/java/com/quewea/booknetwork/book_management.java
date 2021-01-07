@@ -91,9 +91,12 @@ public class book_management extends AppCompatActivity {
                             Fragment updateUser = new UpdateUserFragment();
                             fragmentTransaction.replace(R.id.nav_host_fragment_book_management, updateUser).commit();
                             break;
+                         case R.id.nav_chat:
+                             chats();
+                            break;
                         case R.id.nav_log_out:
                             //Toast.makeText(getApplicationContext(),"Cerrar sesion",Toast.LENGTH_SHORT).show();
-                            logout(navigationView);
+                            logout();
                             return true;
                     }
                     item.setChecked(true);
@@ -108,7 +111,12 @@ public class book_management extends AppCompatActivity {
         }
     }
 
-    public void logout(View view) {
+    private void chats() {
+        Intent chat = new Intent(this, ListOfChatsActivity.class);
+        startActivity(chat);
+    }
+
+    public void logout() {
         SharedPreferences preferences = getSharedPreferences("user", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString("username", "");
