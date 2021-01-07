@@ -1,11 +1,16 @@
 package com.quewea.booknetwork.aplication_menu_ui.home;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,6 +21,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.selection.OperationMonitor;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -36,6 +42,8 @@ public class HomeFragment extends Fragment {
     Adapter adapter;
     private FirebaseFirestore db;
     ProgressDialog progressDialog;
+    EditText txtBuscar;
+    ImageView btnBuscar;
 
     private HomeViewModel homeViewModel;
 
@@ -53,6 +61,8 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        txtBuscar = (EditText) root.findViewById(R.id.txtSearch);
+        btnBuscar = (ImageView) root.findViewById(R.id.btnSearch);
         db = FirebaseFirestore.getInstance();
         progressDialog = new ProgressDialog(getContext());
         Bundle delivery = new Bundle();
@@ -60,7 +70,7 @@ public class HomeFragment extends Fragment {
         recyclerView = root.findViewById(R.id.rvPublications);
         recyclerView.setLayoutManager(new LinearLayoutManager(root.getContext()));
 
-        obtenerBooks(root);
+        obtenerBooks(root, "");
 
         adapter.setOnItemClickListener(new Adapter.OnItemClickListener() {
             @Override
@@ -71,17 +81,45 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        recyclerView.setAdapter(adapter);
+        btnBuscar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ocultarTeclado();
+                String busqueda = txtBuscar.getText().toString();
+                if (busqueda.equals(null) || busqueda.equals(""))
+                    obtenerBooks(root, "");
+                else
+                    obtenerBooks(root, busqueda);
+
+            }
+        });
+
+        //recyclerView.setAdapter(adapter);
 
         return root;
     }
 
-    private void obtenerBooks(View root){
-        Query query = db.collection("Books");
+    private void obtenerBooks(View root, String search){
+        Query query;
+        if (search.equals(""))
+            query = db.collection("Books");
+        else
+            query = db.collection("Books").orderBy("title").startAt(search).endAt(search+"\uf8ff");
         FirestoreRecyclerOptions<Book> fBook = new FirestoreRecyclerOptions.Builder<Book>()
                 .setQuery(query, Book.class).build();
         adapter = new Adapter(root.getContext(), fBook);
         adapter.notifyDataSetChanged();
+        recyclerView.setLayoutManager(new LinearLayoutManager(root.getContext()));
+        recyclerView.setAdapter(adapter);
+        onStart();
+    }
+
+    private void ocultarTeclado(){
+        View v = getActivity().getCurrentFocus();
+        if (v != null) {
+            InputMethodManager inputMethodManager = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+            inputMethodManager.hideSoftInputFromWindow(v.getWindowToken(), 0);
+        }
     }
 
     @Override
@@ -95,6 +133,7 @@ public class HomeFragment extends Fragment {
         super.onStop();
         adapter.stopListening();
     }
+
 
     private void bookDetails(Bundle delivery){
         FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
