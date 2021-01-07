@@ -63,9 +63,12 @@ class ListOfChatsActivity : AppCompatActivity() {
                     .get().addOnSuccessListener { documentSnapshot ->
                 for (document in documentSnapshot) {
                     idChat = (document.id)}
-                        if (emailOwnerBook == "d") {
+                        if (emailOwnerBook == "null") {
+                            return@addOnSuccessListener
                             /* newChat() */
                         } else if (idChat != null && idChat.isNotEmpty()) startChat(idChat)
+                        else newChat()
+
             }
 
 
